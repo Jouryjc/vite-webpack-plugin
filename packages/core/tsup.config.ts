@@ -8,5 +8,6 @@ export default defineConfig({
   sourcemap: true,
   entry: [
     path.resolve(__dirname, 'lib/index.ts')
-  ]
+  ],
+  dts: true
 })

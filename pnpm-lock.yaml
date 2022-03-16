@@ -31,7 +31,10 @@ importers:
 
   packages/vite-plugin-tpl-i18n:
     specifiers:
+      tpl-i18n-core: workspace:^1.0.0
       vite: ^2.8.6
+    dependencies:
+      tpl-i18n-core: link:../core
     devDependencies:
       vite: 2.8.6
 
