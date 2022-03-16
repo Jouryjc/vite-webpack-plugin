@@ -1,18 +1,24 @@
 {
-  "name": "core",
+  "name": "tpl-i18n-core",
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
-    "build": "",
-    "dev": "esmo ./lib/index.ts"
+    "build": "tsc --noEmit && tsup",
+    "dev": "esmo ./lib/index.ts",
+    "test": "vitest -w --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "magic-string": "^0.26.1",
+    "magic-string": "^0.26.1",  
     "parse5": "^6.0.1"
   },
   "devDependencies": {

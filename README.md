@@ -4,3 +4,4 @@
 ## 能获得什么？
 - vitest
 - pnpm workspace
+- esno
