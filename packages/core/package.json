@@ -1,0 +1,22 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "",
+    "dev": "esmo ./lib/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "magic-string": "^0.26.1",
+    "parse5": "^6.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/parse5": "^6.0.3"
+  }
+}

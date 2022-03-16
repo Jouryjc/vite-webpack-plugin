@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`transform file > transform from file 1`] = `
+"<div>
+  {[ this.node_test_1 ]}
+  <input placeholder=\\"{[ this.node_test_2 ]}\\" />
+</div>"
+`;
