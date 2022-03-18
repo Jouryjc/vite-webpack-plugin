@@ -1,0 +1,36 @@
+{
+  "name": "vite-plugin-tpl-i18n",
+  "version": "1.0.0",
+  "description": "A plugin for tranform i18n grammar",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "tsc --noEmit && tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "i18n",
+    "vite-plugin"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "vite": "^2.8.6"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.1",
+    "toSource": "npm:tosource@^2.0.0-alpha.3",
+    "yaml": "^1.10.2"
+  }
+}
