@@ -19,7 +19,7 @@ interface replaceInfo {
 }
 
 /** 外部传入的配置 */
-interface transformOptions {
+export interface transformOptions {
   genKey: (node: Element | Attribute) => string
   genExpression (str: string): string
 }
@@ -122,7 +122,7 @@ export function createTransformer(
   const { i18nTransform } = resolveOptions(options)
 
   return async (source: string) => {
-    const langMap = new Map<string, string>()
+    const langMap = Object.create(null)
 
     if (!source) {
       return {
@@ -147,7 +147,7 @@ export function createTransformer(
 
         // 替换 tpl 时，替换代码跟key是两个东西，key 代表语言包中的词条 key，expression 表示的是要真实替换到tpl代码中的字符串
         const { key, expression } = i18nTransform(node)
-        langMap.set(key, text)
+        langMap[key] = text
 
         s.overwrite(startOffset, endOffset, expression)
       }
@@ -160,7 +160,7 @@ export function createTransformer(
         if (matchers) {
           // 替换 tpl 时，替换代码跟key是两个东西，key 代表语言包中的词条 key，expression 表示的是要真实替换到tpl代码中的字符串
           const { key, expression } = i18nTransform(attr)
-          langMap.set(key, matchers[1])
+          langMap[key] = matchers[1]
 
           s.replace(value, expression)
          

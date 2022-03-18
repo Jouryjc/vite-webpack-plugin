@@ -53,7 +53,9 @@ describe('tpl i18n lang node', () => {
     const tpl = `<html><body><lang>中文</lang></body></html>`
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('<html><body>{[ this.node_test_1 ]}</body></html>')
-    const map = new Map([['node_test_1', '中文']])
+    const map = {
+      'node_test_1': '中文'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -61,7 +63,10 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang>汉字</lang><div>content<lang>内部用法</lang></div>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}<div>content{[ this.node_test_2 ]}</div>')
-    const map = new Map([['node_test_1', '汉字'], ['node_test_2', '内部用法']])
+    const map = {
+      'node_test_1': '汉字',
+      'node_test_2': '内部用法'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -69,7 +74,10 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang>汉字</lang><lang>内部用法</lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}{[ this.node_test_2 ]}')
-    const map = new Map([['node_test_1', '汉字'], ['node_test_2', '内部用法']])
+    const map = {
+      'node_test_1': '汉字',
+      'node_test_2': '内部用法'
+    }
     expect(langMap).toEqual(map)
   })
   
@@ -77,7 +85,9 @@ describe('tpl i18n lang node', () => {
     const tpl = '<div><lang>汉字</div></lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('<div>{[ this.node_test_1 ]}</div></lang>')
-    const map = new Map([['node_test_1', '汉字']])
+    const map = {
+      'node_test_1': '汉字'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -85,7 +95,9 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang>嵌套<input type="button" />尾部</lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}')
-    const map = new Map([['node_test_1', '嵌套<input type="button" />尾部']])
+    const map = {
+      'node_test_1': '嵌套<input type="button" />尾部'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -93,7 +105,9 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang>头部<lang>中间</lang>尾部</lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}')
-    const map = new Map([['node_test_1', '头部<lang>中间</lang>尾部']])
+    const map = {
+      'node_test_1': '头部<lang>中间</lang>尾部'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -101,7 +115,9 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang></lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}')
-    const map = new Map([['node_test_1', '']])
+    const map = {
+      'node_test_1': ''
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -109,7 +125,9 @@ describe('tpl i18n lang node', () => {
     const tpl = '<lang>确定{#noun#}</lang>'
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('{[ this.node_test_1 ]}')
-    const map = new Map([['node_test_1', '确定{#noun#}']])
+    const map = {
+      'node_test_1': '确定{#noun#}'
+    }
     expect(langMap).toEqual(map)
   })
 })
@@ -132,7 +150,9 @@ describe('i18n lang attributes', () => {
     const tpl = `<input placeholder="<lang>请输入</lang>" />`
     const { code, langMap } = await transform(tpl)
     expect(code).toMatch('<input placeholder="{[ this.node_test_1 ]}" />')
-    const map = new Map([['node_test_1', '请输入']])
+    const map = {
+      'node_test_1': '请输入'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -140,7 +160,9 @@ describe('i18n lang attributes', () => {
     const tpl = `<input placeholder="<lang></lang>" />`
     const { code, langMap } = await transform(tpl)
     expect(code).toMatch('<input placeholder="{[ this.node_test_1 ]}" />')
-    const map = new Map([['node_test_1', '']])
+    const map = {
+      'node_test_1': ''
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -148,7 +170,10 @@ describe('i18n lang attributes', () => {
     const tpl = `<input placeholder="<lang>请输入</lang>" data-tip="<lang>输入整数</lang>" />`
     const { code, langMap } = await transform(tpl)
     expect(code).toBe('<input placeholder="{[ this.node_test_1 ]}" data-tip="{[ this.node_test_2 ]}" />')
-    const map = new Map([['node_test_1', '请输入'], ['node_test_2', '输入整数']])
+    const map = {
+      'node_test_1': '请输入',
+      'node_test_2': '输入整数'
+    }
     expect(langMap).toEqual(map)
   })
 
@@ -156,7 +181,9 @@ describe('i18n lang attributes', () => {
     const tpl = `<input placeholder='<lang>请输入</lang>' />`
     const { code, langMap } = await transform(tpl)
     expect(code).toBe(`<input placeholder='{[ this.node_test_1 ]}' />`)
-    const map = new Map([['node_test_1', '请输入']])
+    const map = {
+      'node_test_1': '请输入'
+    }
     expect(langMap).toEqual(map)
   })
 })
@@ -175,11 +202,9 @@ describe ('transform file', () => {
     })
 
     expect(result.code).toMatchSnapshot()
-    expect(result.langMap).toEqual(new Map(
-      [
-        ['node_test_1', 'hello'],
-        ['node_test_2', '请输入']
-      ]
-    ))
+    expect(result.langMap).toEqual({
+        'node_test_1': 'hello',
+        'node_test_2': '请输入'
+    })
   })
 })
